@@ -4,10 +4,10 @@ from scipy.sparse import csr_matrix
 from sklearn.neighbors import NearestNeighbors
 
 def readDatabase():
-    restaurants = pd.read_csv('../Datasets/Restaurants/geoplaces2.csv')
-    rating = pd.read_csv('../Datasets/Restaurants/new_rating.csv')
-    hotels = pd.read_csv('../Datasets/Hotels/hotels_review.csv')
-    museums = pd.read_csv('../Datasets/Museums/museum.csv')
+    restaurants = pd.read_csv('Datasets/Restaurants/geoplaces2.csv')
+    rating = pd.read_csv('Datasets/Restaurants/new_rating.csv')
+    hotels = pd.read_csv('Datasets/Hotels/hotels_review.csv')
+    museums = pd.read_csv('Datasets/Museums/museum.csv')
     return restaurants, rating, hotels, museums
 
 def preprocessData(rating):

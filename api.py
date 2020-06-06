@@ -21,7 +21,7 @@ popularity_model = ''
 
 @app.route('/restaurants/places', methods=['GET', 'POST'])
 def get_all_rest():
-    restaurants = pd.read_csv("../Datasets/Restaurants/geoplaces2.csv")
+    restaurants = pd.read_csv("Datasets/Restaurants/geoplaces2.csv")
     all_restaurants =[]
     for i in range(len(restaurants)):
         r_id = restaurants.iloc[i, 0]
@@ -35,7 +35,7 @@ def get_all_rest():
 
 @app.route('/hotels/places', methods=['GET', 'POST'])
 def get_all_hotels():
-    hotels = pd.read_csv("../Datasets/Hotels/hotels_review.csv")
+    hotels = pd.read_csv("Datasets/Hotels/hotels_review.csv")
     all_hotels =[]
     for i in range(len(hotels)):
         r_id = hotels.index[i]
@@ -49,7 +49,7 @@ def get_all_hotels():
 
 @app.route('/museums/places', methods=['GET', 'POST'])
 def get_all_museums():
-    museums = pd.read_csv("../Datasets/Museums/museum.csv")
+    museums = pd.read_csv("Datasets/Museums/museum.csv")
     all_museums =[]
     for i in range(len(museums)):
         r_id = museums.index[i]
@@ -66,7 +66,7 @@ def get_best_restaurants():
     popularity_model = PopularityRecommender()
     popularity_model.load_model()
     mean_rating = popularity_model.recommend_items(0)
-    place_df = pd.read_csv('../Datasets/Restaurants/geoplaces2.csv')
+    place_df = pd.read_csv('Datasets/Restaurants/geoplaces2.csv')
     tr = []
     for i in range(10):
         top_rated_rest = mean_rating.iloc[i,0]
@@ -82,7 +82,7 @@ def get_best_restaurants():
 
 @app.route('/hotels/best', methods=['GET', 'POST'])
 def get_best_hotels():
-    place_df = pd.read_csv('../Datasets/Hotels/hotels_review.csv')
+    place_df = pd.read_csv('Datasets/Hotels/hotels_review.csv')
     best_hotels = place_df[place_df.Reviewer_Score > place_df['Reviewer_Score'].quantile(.25)]
     best_hotels = best_hotels.sort_values('Average_Score', ascending=False)[:10]
     tr = []
@@ -99,7 +99,7 @@ def get_best_hotels():
 
 @app.route('/museums/best', methods=['GET', 'POST'])
 def get_best_museums():
-    place_df = pd.read_csv("../Datasets/Museums/museum.csv")
+    place_df = pd.read_csv("Datasets/Museums/museum.csv")
     best_museums = place_df[place_df.ReviewCount > place_df['ReviewCount'].quantile(.25)]
     best_museums = best_museums.sort_values('Rating', ascending=False)[:10]
     tr = []
@@ -131,7 +131,7 @@ def get_recommended_places():
 
 
         u_id = str(escape(session['userid']))
-        place_df = pd.read_csv('../Datasets/Restaurants/geoplaces2.csv')
+        place_df = pd.read_csv('Datasets/Restaurants/geoplaces2.csv')
 
         #### Collaborative Filtering Recommender ####
         crf_recommend = []
@@ -190,7 +190,7 @@ def get_recommended_hotels():
 
 
         id = int(escape(session['id']))
-        place_df = pd.read_csv('../Datasets/Hotels/hotels_review.csv')
+        place_df = pd.read_csv('Datasets/Hotels/hotels_review.csv')
 
         #### Content Based NLP Recommender ####
         cb_recommend = []
@@ -227,7 +227,7 @@ def get_recommended_museums():
 
 
         id = int(escape(session['id']))
-        place_df = pd.read_csv('../Datasets/Museums/museum.csv')
+        place_df = pd.read_csv('Datasets/Museums/museum.csv')
 
         #### Content Based NLP Recommender ####
         cb_recommend = []
