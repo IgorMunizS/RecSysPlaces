@@ -3,6 +3,7 @@ from sklearn.model_selection import train_test_split
 from models import PopularityRecommender, CFR, ContentBasedNLP, HybridRecommender,ContentBasedNLPHotels
 from models import ContentBasedNLPMuseums
 from evaluation import Evaluator
+from sentiment_analysis import SentimentAnalysisModel
 
 class Train:
 
@@ -80,5 +81,11 @@ class Train:
         cb_model.train_model()
         print('Saving Content Based NLP Museums recommendation model')
         cb_model.save_model()
+
+        print('Training Sentiment Analysis model...')
+        sa_model = SentimentAnalysisModel()
+        sa_model.training()
+        print('Saving Sentiment Analysis model')
+        sa_model.save_model()
 
 train = Train()
